@@ -1,16 +1,93 @@
-# React + Vite
+# Concesionario Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada con React + Vite para la gestión de vehículos de un concesionario.
 
-Currently, two official plugins are available:
+##  Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[https://josedevoc.github.io/concesionario-frontend-Prueba-Tecnica-/](https://josedevoc.github.io/concesionario-frontend-Prueba-Tecnica-/)
 
-## React Compiler
+> ⚠️ El backend está en Render (plan gratuito) y puede tardar ~30 segundos en despertar. Actívalo antes de usar la app:
+> [https://concesionario-backend-fastapi.onrender.com/](https://concesionario-backend-fastapi.onrender.com/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías
 
-## Expanding the ESLint configuration
+- React 19
+- Vite
+- React Router DOM (HashRouter para GitHub Pages)
+- Framer Motion
+- Axios
+- JWT (autenticación)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##  Funcionalidades
+
+- **Home** con animaciones, media luna y navegación al login
+- **Login / Registro** con autenticación JWT
+- **Dashboard protegido** con CRUD completo de vehículos
+- **Animaciones** typewriter al editar/eliminar y partículas al crear
+- **Iconos rosados** al activar el formulario con el botón `+`
+- **Diseño responsive** basado en Figma con fuente Montserrat y colores corporativos
+
+## Instalación
+```bash
+git clone https://github.com/Josedevoc/concesionario-frontend-Prueba-Tecnica-
+cd concesionario-frontend-Prueba-Tecnica-
+npm install
+npm run dev
+```
+
+##  Variables de entorno
+
+Crea un archivo `.env` en la raíz:
+```
+VITE_API_URL=https://concesionario-backend-fastapi.onrender.com
+```
+
+##  Despliegue en GitHub Pages
+```bash
+npm run deploy
+```
+
+##  Estructura
+```
+src/
+├── assets/
+│   ├── Frame.png           # Logo motion footer
+│   ├── Persona.png
+│   ├── Persona_rosada.png
+│   ├── Ubicacion.png
+│   ├── Ubicacion_rosado.png
+│   ├── Vector.svg          # Logo principal
+│   ├── Vehiculo.png
+│   ├── Vehiculo_rosado.png
+│   ├── editar.png
+│   ├── eliminar.png
+│   └── phone.png
+├── components/
+│   ├── CurvedLine.jsx
+│   ├── VehicleForm.jsx     # Formulario CRUD con animaciones
+│   └── VehicleTable.jsx    # Tabla con animaciones Framer Motion
+├── pages/
+│   ├── Home.jsx            # Página de inicio con animaciones
+│   ├── Login.jsx           # Login y registro con JWT
+│   └── Dashboard.jsx       # Dashboard protegido
+├── services/
+│   └── api.js              # Axios + interceptor JWT
+├── styles/
+│   ├── Dashboard.css
+│   ├── Home.css
+│   ├── Login.css
+│   └── variables.css
+├── App.jsx                 # Rutas con PrivateRoute
+├── main.jsx
+└── index.css
+```
+
+##  Diseño
+
+Colores corporativos:
+- Blue1: `#00249C`
+- Blue2: `#40CEE4`
+- Grey1: `#C5C5C5`
+- Red1: `#C6007E`
+
+Fuente: **Montserrat**
