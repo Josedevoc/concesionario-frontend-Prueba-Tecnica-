@@ -26,12 +26,10 @@ function Home() {
       {/* Contenido principal */}
       <div className="home__content">
         <div className="home__texts">
-          {/* Bienvenido A - detras del telefono */}
           <div className="home__text--back">
             <h1>BIENVENIDO A</h1>
           </div>
-          {/* Monitoring Innovation - adelante del telefono */}
-          <div className="home__text--front" onClick={() => navigate('/dashboard')}>
+          <div className="home__text--front" onClick={() => navigate('/login')}>
             <h2>MONITORING INNOVATION</h2>
           </div>
         </div>
