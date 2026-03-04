@@ -3,15 +3,16 @@ import { AnimatePresence, motion } from 'framer-motion';
 import editarImg from '../assets/editar.png';
 import eliminarImg from '../assets/eliminar.png';
 
-function VehicleTable({ vehicles, onEdit, onDelete }) {
+function VehicleTable({ vehicles, onEdit, onDelete, onDeletePreview, tableRefs }) {
   const [deletingId, setDeletingId] = useState(null);
 
-  const handleDelete = (id) => {
-    setDeletingId(id);
+  const handleDelete = (v) => {
+    setDeletingId(v.id);
+    onDeletePreview(v); // envía los datos al formulario
     setTimeout(() => {
-      onDelete(id);
+      onDelete(v.id);
       setDeletingId(null);
-    }, 400);
+    }, 1200); // espera a que el typewriter termine
   };
 
   return (
@@ -19,9 +20,9 @@ function VehicleTable({ vehicles, onEdit, onDelete }) {
       <table>
         <thead>
           <tr>
-            <th>Marca</th>
-            <th>Sucursal</th>
-            <th>Aspirante</th>
+            <th ref={tableRefs.marca}>Marca</th>
+            <th ref={tableRefs.localidad}>Sucursal</th>
+            <th ref={tableRefs.aspirante}>Aspirante</th>
             <th></th>
           </tr>
         </thead>
@@ -41,7 +42,7 @@ function VehicleTable({ vehicles, onEdit, onDelete }) {
                   <button className="vehicle-table__edit" onClick={() => onEdit(v)}>
                     <img src={editarImg} alt="editar" />
                   </button>
-                  <button className="vehicle-table__delete" onClick={() => handleDelete(v.id)}>
+                  <button className="vehicle-table__delete" onClick={() => handleDelete(v)}>
                     <img src={eliminarImg} alt="eliminar" />
                   </button>
                 </td>

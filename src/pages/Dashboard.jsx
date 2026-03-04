@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import VehicleForm from '../components/VehicleForm';
 import VehicleTable from '../components/VehicleTable';
 import { getVehicles, createVehicle, updateVehicle, deleteVehicle } from '../services/api';
@@ -8,6 +8,12 @@ import frameImg from '../assets/Frame.png';
 function Dashboard() {
   const [vehicles, setVehicles] = useState([]);
   const [editingVehicle, setEditingVehicle] = useState(null);
+  const [deletedVehicle, setDeletedVehicle] = useState(null);
+  const tableRefs = {
+    marca: useRef(null),
+    localidad: useRef(null),
+    aspirante: useRef(null),
+  };
 
   const fetchVehicles = async () => {
     try {
@@ -60,12 +66,9 @@ function Dashboard() {
     }
   };
 
-  const handleEdit = (vehicle) => {
-    setEditingVehicle(vehicle);
-  };
-
-  const handleCancel = () => {
-    setEditingVehicle(null);
+  const handleDeletePreview = (vehicle) => {
+    setDeletedVehicle(vehicle);
+    setTimeout(() => setDeletedVehicle(null), 1200);
   };
 
   return (
@@ -74,15 +77,19 @@ function Dashboard() {
         <div className="dashboard__left">
           <VehicleForm
             onSubmit={editingVehicle ? handleUpdate : handleCreate}
-            onCancel={handleCancel}
+            onCancel={() => setEditingVehicle(null)}
             editingVehicle={editingVehicle}
+            deletedVehicle={deletedVehicle}
+            tableRefs={tableRefs}
           />
         </div>
         <div className="dashboard__right">
           <VehicleTable
             vehicles={vehicles}
-            onEdit={handleEdit}
+            onEdit={setEditingVehicle}
             onDelete={handleDelete}
+            onDeletePreview={handleDeletePreview}
+            tableRefs={tableRefs}
           />
         </div>
       </div>

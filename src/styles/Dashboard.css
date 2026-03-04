@@ -33,7 +33,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-top: 5vh;
 }
 
 .dashboard__footer {
@@ -185,6 +184,9 @@
   font-size: 1.2rem;
   cursor: pointer;
   transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .vehicle-form__btn--confirm-icon {
@@ -197,7 +199,11 @@
   font-size: 1.2rem;
   cursor: pointer;
   transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .vehicle-form__btn--cancel-icon:hover,
 .vehicle-form__btn--confirm-icon:hover {
@@ -281,11 +287,12 @@
 
 .vehicle-form__flying {
   position: fixed;
-  color: #00249C;
+  color: #C6007E;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
   pointer-events: none;
   z-index: 999;
   white-space: nowrap;
+  letter-spacing: 1px;
 }
