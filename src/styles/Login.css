@@ -125,3 +125,18 @@
 .login__toggle span:hover {
   color: #40CEE4;
 }
+.login__back {
+  position: absolute;
+  top: 2.5vh;
+  right: 2vw;
+  color: #00249C;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.login__back:hover {
+  color: #40CEE4;
+}

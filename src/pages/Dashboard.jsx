@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import VehicleForm from '../components/VehicleForm';
 import VehicleTable from '../components/VehicleTable';
 import { getVehicles, createVehicle, updateVehicle, deleteVehicle } from '../services/api';
@@ -6,9 +7,11 @@ import '../styles/Dashboard.css';
 import frameImg from '../assets/Frame.png';
 
 function Dashboard() {
+  const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
   const [editingVehicle, setEditingVehicle] = useState(null);
   const [deletedVehicle, setDeletedVehicle] = useState(null);
+  const [showLogout, setShowLogout] = useState(false);
   const tableRefs = {
     marca: useRef(null),
     localidad: useRef(null),
@@ -71,6 +74,11 @@ function Dashboard() {
     setTimeout(() => setDeletedVehicle(null), 1200);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
+
   return (
     <div className="dashboard">
       <div className="dashboard__main">
@@ -93,6 +101,29 @@ function Dashboard() {
           />
         </div>
       </div>
+
+      {/* Botón salir */}
+      <div className="dashboard__logout" onClick={() => setShowLogout(true)}>
+        ← Salir
+      </div>
+
+      {/* Popup confirmación */}
+      {showLogout && (
+        <div className="dashboard__overlay">
+          <div className="dashboard__popup">
+            <p>¿Estás seguro que quieres salir?</p>
+            <div className="dashboard__popup-actions">
+              <button className="dashboard__popup-cancel" onClick={() => setShowLogout(false)}>
+                Cancelar
+              </button>
+              <button className="dashboard__popup-confirm" onClick={handleLogout}>
+                Salir
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="dashboard__footer">
         <img src={frameImg} alt="motion" />
       </div>

@@ -53,6 +53,11 @@ function Login() {
         <img src={logoImg} alt="logo" width="48" height="48" />
       </div>
 
+      {/* Botón regresar */}
+      <div className="login__back" onClick={() => navigate('/')}>
+        ← Regresar
+      </div>
+
       <div className="login__card">
         <h2 className="login__title">
           {isRegister ? 'Crear cuenta' : 'Bienvenido'}
